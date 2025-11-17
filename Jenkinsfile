@@ -54,10 +54,10 @@ pipeline {
                         // Chạy container Docker với volume map để lấy report ra host
                         bat """
                             docker run --rm ^
-                            -v %cd%\\${env.REPORT_DIR}:/app/${env.REPORT_DIR} ^
+                            -v ${WORKSPACE}\\${env.REPORT_DIR}:/app/${env.REPORT_DIR} ^
                             -e BASE_URL=${baseUrl} ^
                             -e ADMIN_USER=chungthuy ^
-                            -e ADMIN_PASS=Thudong1237@ ^
+                            -e ADMIN_PASS="Thudong1237@" ^
                             my-playwright-image ^
                             npx playwright test --reporter=html
                             """
