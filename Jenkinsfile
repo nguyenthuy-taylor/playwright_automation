@@ -57,7 +57,7 @@ pipeline {
                         -v %cd%\\${env.REPORT_DIR}:/app/${env.REPORT_DIR} ^
                         -e BASE_URL=${baseUrl} ^
                         ${env.DOCKER_IMAGE} ^
-                        npx playwright test --reporter=html --headless
+                        npx playwright test --reporter=html
                         """
                     }
                 }
