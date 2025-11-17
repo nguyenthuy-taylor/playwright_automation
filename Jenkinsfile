@@ -29,6 +29,13 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            teps {
+               echo 'Building Docker image for Playwright tests...'
+               bat "docker build -t ${env.DOCKER_IMAGE} ."
+            }
+        }
+
         stage('Run Tests in Docker') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -62,7 +69,7 @@ pipeline {
             steps {
                 echo 'Generating HTML report...'
                 // show-report sẽ dùng report đã tạo sẵn
-                bat "npx playwright show-report --reporter=html"
+                bat 'npx playwright show-report --reporter=html'
                 bat "dir ${env.REPORT_DIR}"
             }
         }
