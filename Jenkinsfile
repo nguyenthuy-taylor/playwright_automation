@@ -14,10 +14,10 @@ pipeline {
     }
 
     environment {
-        // Cho Playwright cài browsers ở local project
         PLAYWRIGHT_BROWSERS_PATH = '0'
         PATH = "${env.PATH};C:\\Users\\admin\\AppData\\Roaming\\npm"
         REPORT_DIR = 'playwright-report'
+        DOCKER_IMAGE = 'my-playwright-image' // <-- đặt tên cố định cho Docker image
     }
 
     stages {
@@ -31,8 +31,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-               echo 'Building Docker image for Playwright tests...'
-               bat "docker build -t ${env.DOCKER_IMAGE} ."
+                echo 'Building Docker image for Playwright tests...'
+                bat "docker build -t ${env.DOCKER_IMAGE} ."
             }
         }
 
@@ -40,7 +40,6 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     script {
-                        // Chọn BASE_URL theo môi trường
                         def baseUrl = ''
                         if (params.TARGET_ENV == 'dev') {
                             baseUrl = 'http://host.docker.internal/orangehrm/web/index.php/auth/login'
@@ -57,7 +56,7 @@ pipeline {
                         docker run --rm ^
                         -v %cd%\\${env.REPORT_DIR}:/app/${env.REPORT_DIR} ^
                         -e BASE_URL=${baseUrl} ^
-                        your-playwright-image ^
+                        ${env.DOCKER_IMAGE} ^
                         npx playwright test --reporter=html --headless
                         """
                     }
@@ -65,11 +64,10 @@ pipeline {
             }
         }
 
-        stage('Generate HTML Report') {
+        stage('Show HTML Report') {
             steps {
-                echo 'Generating HTML report...'
-                // show-report sẽ dùng report đã tạo sẵn
-                bat 'npx playwright show-report --reporter=html'
+                echo 'Opening Playwright HTML report...'
+                bat 'npx playwright show-report'
                 bat "dir ${env.REPORT_DIR}"
             }
         }
