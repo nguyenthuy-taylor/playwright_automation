@@ -1,0 +1,21 @@
+{
+  "name": "orangehrm_new",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "project-staging": "npx playwright test tests/admin/Level_02_User_Management_Test_Data_Fixtures.spec.js --project=staging",
+    "project-docker": "npx playwright test tests/admin/Level_02_User_Management_Test_Data_Fixtures.spec.js --project=docker"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@playwright/test": "^1.56.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

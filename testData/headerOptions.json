@@ -1,0 +1,34 @@
+{
+    "JOB": {
+        "JOB_TITLES": "Job Titles",
+        "PAY_GRADES": "Pay Grades",
+        "EMPLOYMENT_STATUS": "Employment Status",
+        "JOB_CATEGORIES": "Job Categories",
+        "WORK_SHIFTS": "Work Shifts"
+    },
+    "USER_MANAGEMENT": {
+        "USERS": "Users"
+    },
+    "ORGANIZATION": {
+        "GENERAL_INFORMATION": "General Information",
+        "LOCATIONS": "Locations",
+        "STRUCTURE": "Structure"
+    },
+    "QUALIFICATIONS": {
+        "SKILLS": "Skills",
+        "EDUCATION": "Education",
+        "LICENSES": "Licenses",
+        "LANGUAGES": "Languages",
+        "MEMBERSHIPS": "Memberships"
+    },
+    "CONFIGURATION": {
+        "SKILLS": "Email Configuration",
+        "EDUCATION": "Email Subscriptions",
+        "LICENSES": "Localization",
+        "LANGUAGES": "Language Packages",
+        "MODULES": "Modules",
+        "SOCIAL_MEDIA_AUTHENTICATION": "Social Media Authentication",
+        "REGISTER_OAUTH_CLIENT": "Register OAuth Client",
+        "LDAP_CONFIGURATION": "LDAP Configuration"
+    }
+}
