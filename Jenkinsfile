@@ -30,7 +30,7 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            teps {
+            steps {
                echo 'Building Docker image for Playwright tests...'
                bat "docker build -t ${env.DOCKER_IMAGE} ."
             }
