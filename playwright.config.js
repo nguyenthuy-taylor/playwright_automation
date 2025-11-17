@@ -9,10 +9,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }], ['list']],
   use: {
     trace: 'on-first-retry',
-    baseURL: 'http://host.docker.internal/orangehrm/web/index.php',
+    baseURL: 'http://localhost/orangehrm/web/index.php/auth/login',
   },
 
   globalSetup: './tests/login/login.setup.js',
@@ -38,7 +38,7 @@ export default defineConfig({
       name: 'docker',
       use: {
         ...devices['Desktop Chrome'], storageState: 'storage/authState.json',
-        baseURL: 'http://host.docker.internal/orangehrm/web/index.php'
+        baseURL: 'http://host.docker.internal/orangehrm/web/index.php/auth/login'
       }
 
     }
@@ -47,7 +47,7 @@ export default defineConfig({
 
   webServer: {
     command: '',
-    url: 'http://host.docker.internal/orangehrm/web/index.php/dashboard/index',
+    url: 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
     reuseExistingServer: true,
     timeout: 120 * 1000
   }

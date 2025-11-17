@@ -14,8 +14,7 @@ export default async () => {
   const context = await browser.newContext();
   const page = await context.newPage();
 
-  await page.goto('http://host.docker.internal/orangehrm/web/index.php/auth/login')
-  // await page.goto('/auth/login');
+  await page.goto(process.env.BASE_URL);
 
   const token = await page.getAttribute('input[name="_token"]', 'value');
   console.log('_token:', token);
