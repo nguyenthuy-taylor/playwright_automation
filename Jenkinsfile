@@ -48,7 +48,6 @@ pipeline {
                         } else {
                             baseUrl = 'http://localhost/orangehrm/web/index.php/dashboard/index'
                         }
-                        def envFilePath = 'C:\\Users\\admin\\OrangeHrm_New\\.env.dev'
 
                         echo "Running Playwright tests on ${baseUrl} in Docker..."
 
@@ -56,9 +55,9 @@ pipeline {
                         bat """
                             docker run --rm ^
                             -v %cd%\\${env.REPORT_DIR}:/app/${env.REPORT_DIR} ^
-                            -v C:\\Users\\admin\\OrangeHrm_New:/app/config ^
-                            --env-file /app/config/.env.dev ^
                             -e BASE_URL=${baseUrl} ^
+                            -e ADMIN_USER=chungthuy ^
+                            -e ADMIN_PASS=Thudong1237@ ^
                             my-playwright-image ^
                             npx playwright test --reporter=html
                             """
