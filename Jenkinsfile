@@ -60,6 +60,7 @@ pipeline {
                             -e ADMIN_USER=chungthuy ^
                             -e ADMIN_PASS="Thudong1237@" ^
                             my-playwright-image ^
+                            chcp 65001
                             npx playwright test --project=${params.TARGET_ENV} --reporter=html
                             """
                     }
