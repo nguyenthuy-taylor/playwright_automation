@@ -17,7 +17,8 @@ pipeline {
         PLAYWRIGHT_BROWSERS_PATH = '0'
         PATH = "${env.PATH};C:\\Users\\admin\\AppData\\Roaming\\npm"
         REPORT_DIR = 'playwright-report'
-        DOCKER_IMAGE = 'my-playwright-image' // <-- đặt tên cố định cho Docker image
+        DOCKER_IMAGE = 'my-playwright-image'
+        JAVA_TOOL_OPTIONS = '-Dfile.encoding=UTF-8'
     }
 
     stages {
@@ -59,7 +60,7 @@ pipeline {
                             -e ADMIN_USER=chungthuy ^
                             -e ADMIN_PASS="Thudong1237@" ^
                             my-playwright-image ^
-                            npx playwright test --reporter=html
+                            npx playwright test --project=${params.TARGET_ENV} --reporter=html
                             """
                     }
                 }

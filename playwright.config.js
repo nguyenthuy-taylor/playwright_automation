@@ -11,8 +11,10 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }], ['list']],
   use: {
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     baseURL: 'http://localhost/orangehrm/web/index.php/auth/login',
+    screenshot: 'only-on-failure', 
+    video: 'retain-on-failure'     
   },
 
   globalSetup: './tests/login/login.setup.js',
