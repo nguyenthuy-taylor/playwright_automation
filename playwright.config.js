@@ -13,8 +13,8 @@ export default defineConfig({
   use: {
     trace: 'retain-on-failure',
     baseURL: 'http://localhost/orangehrm/web/index.php/auth/login',
-    screenshot: 'only-on-failure', 
-    video: 'retain-on-failure'     
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure'
   },
 
   globalSetup: './tests/login/login.setup.js',
@@ -22,25 +22,28 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: 'storage/authState.json' },
-      testDir: './tests'
+      name: 'dev',
+      use: {
+        ...devices['Desktop Chrome'], storageState: 'storage/authState.json',
+        baseURL: 'http://host.docker.internal/orangehrm/web/index.php/auth/login'
+      }
+
+    },
+
+    {
+      name: 'test',
+      use: {
+        ...devices['Desktop Chrome'], storageState: 'storage/authState.json',
+        baseURL: 'http://localhost/orangehrm/web/index.php/dashboard/index'
+      }
+
     },
 
     {
       name: 'staging',
       use: {
         ...devices['Desktop Chrome'], storageState: 'storage/authState.json',
-        baseURL: 'https://sotatek.udemy.com/course/playwright-with-cucumber-bdd-typescript-beginner-to-pro/learn/lecture/45258747#overview'
-      }
-
-    },
-
-    {
-      name: 'docker',
-      use: {
-        ...devices['Desktop Chrome'], storageState: 'storage/authState.json',
-        baseURL: 'http://host.docker.internal/orangehrm/web/index.php/auth/login'
+        baseURL: 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'
       }
 
     }
